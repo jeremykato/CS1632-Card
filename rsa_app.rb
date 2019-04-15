@@ -22,14 +22,14 @@ end
 if ARGV[0] == '-g'
   if File.file?(names_fn)
     lines = File.readlines(names_fn)
-    lines.each do 
-      |line| line.slice!("\n")
+    lines.each do |line|
+      line.slice!("\n")
     end
     name_key_map = RSAEngine.generate(lines) # totally secure*
     RSAEngine.write_pem_files(key_dir, name_key_map) # also totally secure*
     puts 'Completed key generation!'
   else
-    puts 'Error: '+ names_fn.to_s + ' not found!'
+    puts 'Error: ' + names_fn.to_s + ' not found!'
   end
 elsif ARGV[0] == '-s'
   if File.file?(card_fn)

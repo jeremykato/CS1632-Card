@@ -2,8 +2,8 @@ require 'openssl'
 require 'base64'
 require 'digest'
 
-class RSAEngine 
-
+# RSA Engine
+class RSAEngine
   def self.generate(lines)
     name_kp_map = {}
     lines.each do |name|
@@ -22,9 +22,9 @@ class RSAEngine
   end
 
   def self.write_pem_files(directory, name_key_map)
-    Dir.mkdir directory unless Dir.exists? directory
+    Dir.mkdir directory unless Dir.exist? directory
     name_key_map.keys.each do |name|
-      name = name.gsub("\n", "")
+      name = name.delete("\n")
       filename = directory + '/' + name + '.pem'
       File.open(filename, 'w+') do |f|
         f.write(name_key_map[name])
@@ -43,7 +43,7 @@ class RSAEngine
     end
     map
   end
-  
+
   def self.write_signatures_to_file(filename, name_sig_map)
     File.write(filename, "Signatures:\n", mode: 'w+')
     name_sig_map.keys.each do |name|

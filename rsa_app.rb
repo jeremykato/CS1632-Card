@@ -9,7 +9,6 @@ def print_usage
   puts 'Usage: ruby rsa_app.rb <option>'
   puts '  options: -g generate'
   puts '           -s sign card'
-  puts '           -v verify signatures'
 end
 
 if ARGV.size != 1

@@ -1,5 +1,6 @@
 require 'openssl'
 require 'base64'
+require 'digest'
 
 class RSAEngine 
 
@@ -12,9 +13,10 @@ class RSAEngine
   end
 
   def self.sign_all(message, name_key_map)
+    message_hash = Digest::SHA256.base64digest(message)
     name_sig_map = {}
     name_key_map.keys.each do |name|
-      name_sig_map[name] = name_key_map[name].private_encrypt(message)
+      name_sig_map[name] = name_key_map[name].private_encrypt(message_hash)
     end
     name_sig_map
   end

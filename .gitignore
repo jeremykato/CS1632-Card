@@ -1,0 +1,4 @@
+*keys/
+*.dll
+*.exe
+signatures.txt
